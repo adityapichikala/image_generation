@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Image Generator | SD-Turbo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="glass-bg"></div>
+    
+    <header>
+        <div class="logo">
+            <i class="fas fa-paint-brush gradient-text"></i>
+            <h1 class="gradient-text">AnimeArt AI</h1>
+        </div>
+        <div class="badge">SD-Turbo Powered</div>
+    </header>
+
+    <main class="container">
+        <section class="generator-card">
+            <div class="card-header">
+                <h2><i class="fas fa-magic"></i> Generate Your Anime Character</h2>
+                <p>Create stunning anime visuals in milliseconds</p>
+            </div>
+
+            <div class="input-group">
+                <textarea id="promptInput" placeholder="Enter an anime prompt (e.g., 'anime magical girl with pastel hair, sparkles, highly detailed')..." rows="3"></textarea>
+                <div class="controls">
+                    <div class="control-item">
+                        <label for="stepsRange">Quality (Steps): <span id="stepsValue">2</span></label>
+                        <input type="range" id="stepsRange" min="1" max="4" value="2">
+                    </div>
+                </div>
+                <button id="generateBtn" class="primary-btn">
+                    <span class="btn-text">Generate Art</span>
+                    <i class="fas fa-spinner fa-spin hidden" id="loadingIcon"></i>
+                </button>
+            </div>
+
+            <div class="example-prompts">
+                <span>Try these:</span>
+                <button class="example-btn">anime hero, action pose</button>
+                <button class="example-btn">cyberpunk Tokyo anime style</button>
+                <button class="example-btn">cute chibi mascot</button>
+            </div>
+        </section>
+
+        <!-- Domain Notification (Hidden by default) -->
+        <div id="domainWarning" class="notification warning hidden">
+            <div class="notif-icon"><i class="fas fa-exclamation-triangle"></i></div>
+            <div class="notif-content">
+                <h3>Out of Domain Detected!</h3>
+                <p id="warningMessage">This system is specialized for <strong>anime and animated content</strong>.</p>
+                <div class="suggestion-box">
+                    <span>Suggested:</span>
+                    <code id="suggestedPrompt">anime style, ...</code>
+                    <button id="useSuggestionBtn" class="accent-btn">Use This Prompt</button>
+                </div>
+            </div>
+            <button class="close-notif"><i class="fas fa-times"></i></button>
+        </div>
+
+        <section class="result-display">
+            <div id="placeholder" class="placeholder">
+                <i class="far fa-image"></i>
+                <p>Your creation will appear here</p>
+            </div>
+            <div id="imageContainer" class="image-container hidden">
+                <img id="resultImage" src="" alt="Generated Anime Art">
+                <div class="image-actions">
+                    <a id="downloadBtn" href="#" download="anime_art.png" class="action-btn">
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 AnimeArt AI Generator. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
